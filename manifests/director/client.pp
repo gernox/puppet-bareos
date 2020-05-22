@@ -50,10 +50,10 @@ class gernox_bareos::director::client (
 
     if $jobs != undef {
       $jobs.each |$k, $v| {
-        ::bareos::director::job { "${client_params['client_name']}-${k}":
-          *      => $v,
-          client => $client_params['client_name'],
-        }
+        # ::bareos::director::job { "${client_params['client_name']}-${k}":
+        #   *      => $v,
+        #   client => $client_params['client_name'],
+        # }
       }
     }
   }
