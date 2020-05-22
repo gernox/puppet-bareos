@@ -10,14 +10,12 @@
 class gernox_bareos::director::storage (
   String $address,
   String $password,
-  Array  $devices = [],
+  Array  $devices,
 ) {
-  if $devices.length > 0 {
-    ::bareos::director::storage { 'File':
-      address    => $address,
-      password   => $password,
-      device     => $devices,
-      media_type => 'File',
-    }
+  ::bareos::director::storage { 'File':
+    address    => $address,
+    password   => $password,
+    device     => $devices,
+    media_type => 'File',
   }
 }
