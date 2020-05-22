@@ -32,11 +32,7 @@ class gernox_bareos::director::client (
 
   # Ignore puppetdb during bootstrap
   $clients = $::settings::storeconfigs ? {
-    true    => puppetdb_query([
-      'and',
-      ['=', 'type', 'Class'],
-      ['=', 'title', 'gernox_bareos::Client'],
-    ]),
+    true    => puppetdb_query('resources { type = "Class" and title = "Gernox_bareos::Client" }'),
     default => {}
   }
 
