@@ -11,6 +11,5 @@ class gernox_bareos::install {
     package_name   => 'bareos-common',
     package_ensure => present,
     service_ensure => running,
-    require        => Class['gernox_bareos::repository'],
   }
 }
