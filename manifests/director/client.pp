@@ -39,10 +39,10 @@ class gernox_bareos::director::client (
   each($clients) |$client| {
     $client_params = $client['parameters']
 
-    ::bareos::director::client { $client_params['client_name']:
-      description => "Client resource of ${client_params['client_name']}",
+    ::bareos::director::client { $client_params['client_hostname']:
+      description => "Client resource of ${client_params['client_hostname']}",
       password    => $client_params['client_password'],
-      address     => $client_params['client_name'],
+      address     => $client_params['client_hostname'],
       # tls_enable  => false,
     }
 
