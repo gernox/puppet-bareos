@@ -1,9 +1,11 @@
 # @summary
 #   Installs and configures bareos client
 #
-# @param client_name
+# @param director_hostname
 #
-# @param director_name
+# @param director_address
+#
+# @param client_hostname
 #
 # @param client_password
 #
