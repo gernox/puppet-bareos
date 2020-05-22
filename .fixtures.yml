@@ -2,5 +2,19 @@
 # See https://github.com/puppetlabs/puppetlabs_spec_helper#using-fixtures for details
 ---
 fixtures:
-  forge_modules:
-#     stdlib: "puppetlabs/stdlib"
+  repositories:
+    apache:
+      repo: 'https://github.com/puppetlabs/puppetlabs-apache.git'
+      ref: 'v5.4.0'
+    apt:
+      repo: 'https://github.com/puppetlabs/puppetlabs-apt.git'
+      ref: 'v7.4.1'
+    bareos:
+      repo: 'https://github.com/Project0/puppet-bareos.git'
+      ref: '973928680d7ab720c873fcdc1d4c950299fdff91'
+    concat:
+      repo: 'https://github.com/puppetlabs/puppetlabs-concat.git'
+      ref: 'v6.2.0'
+    stdlib:
+      repo: 'https://github.com/puppetlabs/puppetlabs-stdlib.git'
+      ref: 'v6.3.0'

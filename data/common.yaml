@@ -1,1 +1,31 @@
---- {}
+---
+gernox_bareos::repository::version: '19.2'
+
+gernox_bareos::director::director_name: "%{facts.fqdn}"
+gernox_bareos::director::db_user: bareos
+gernox_bareos::director::db_name: bareos
+gernox_bareos::director::db_host: localhost
+gernox_bareos::director::db_port: 5432
+
+gernox_bareos::director::http_port: 8080
+gernox_bareos::director::manage_apache: true
+gernox_bareos::director::webui_user: admin
+gernox_bareos::director::storage_name: "%{facts.fqdn}"
+
+gernox_bareos::storage::director_name: "%{facts.fqdn}"
+gernox_bareos::storage::storage_name: "%{facts.fqdn}"
+gernox_bareos::storage::storage_password: "%{hiera('gernox_bareos::director::storage_password')}"
+
+gernox_bareos::base_dir: /gernox/bareos
+gernox_bareos::director_hostname: "%{facts.fqdn}"
+gernox_bareos::storage_hostname: "%{facts.fqdn}"
+
+gernox_bareos::client::jobs:
+  default:
+    job_defs: DefaultJob
+    schedule_res: WeeklyCycle
+
+gernox_bareos::collection_tag: bareos_client_config
+gernox_bareos::type: client
+gernox_bareos::director_config_dir: /gernox/bareos/director/bareos-dir.d
+gernox_bareos::storage_config_dir: /gernox/bareos/storage/bareos-sd.d
