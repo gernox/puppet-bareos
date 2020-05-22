@@ -35,9 +35,12 @@ If there's more that they should know about, though, this is the place to mentio
 
 ### Setup Requirements **OPTIONAL**
 
-If your module requires anything extra before setting up (pluginsync enabled, another module, etc.), mention it here.
-
-If your most recent release breaks compatibility or requires particular steps for upgrading, you might want to include an additional "Upgrading" section here.
+```shell script
+su -l postgres
+/usr/lib/bareos/scripts/create_bareos_database
+/usr/lib/bareos/scripts/make_bareos_tables
+/usr/lib/bareos/scripts/make_bareos_tables
+```
 
 ### Beginning with bareos
 

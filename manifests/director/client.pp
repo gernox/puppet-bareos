@@ -51,10 +51,10 @@ class gernox_bareos::director::client (
 
     if $jobs != undef {
       $jobs.each |$k, $v| {
-        # ::bareos::director::job { "${client_hostname}-${k}":
-        #   *      => $v,
-        #   client => $client_hostname,
-        # }
+        ::bareos::director::job { "${client_hostname}-${k}":
+          *      => $v,
+          client => $client_hostname,
+        }
       }
     }
   }
