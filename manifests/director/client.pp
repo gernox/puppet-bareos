@@ -38,11 +38,12 @@ class gernox_bareos::director::client (
 
   each($clients) |$client| {
     $client_params = $client['parameters']
+    $client_hostname = $client_params['client_hostname']
 
-    ::bareos::director::client { $client_params['client_hostname']:
-      description => "Client resource of ${client_params['client_hostname']}",
+    ::bareos::director::client { $client_hostname:
+      description => "Client resource of ${client_hostname}",
       password    => $client_params['client_password'],
-      address     => $client_params['client_hostname'],
+      address     => $client_hostname,
       # tls_enable  => false,
     }
 
@@ -50,9 +51,9 @@ class gernox_bareos::director::client (
 
     if $jobs != undef {
       $jobs.each |$k, $v| {
-        # ::bareos::director::job { "${client_params['client_name']}-${k}":
+        # ::bareos::director::job { "${client_hostname}-${k}":
         #   *      => $v,
-        #   client => $client_params['client_name'],
+        #   client => $client_hostname,
         # }
       }
     }
