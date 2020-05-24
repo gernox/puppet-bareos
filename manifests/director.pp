@@ -87,32 +87,5 @@ class gernox_bareos::director (
   contain gernox_bareos::director::profile
   contain gernox_bareos::director::schedule
   contain gernox_bareos::director::storage
-
-  ::bareos::webui::director { $director_name: }
-
-  if $manage_apache {
-    class { '::apache':
-      mpm_module    => 'prefork',
-      default_vhost => false,
-    }
-
-    class { '::apache::mod::php':
-      php_version => '7.2',
-    }
-
-    class { '::apache::mod::rewrite': }
-
-    apache::vhost { 'default-bareos-webui':
-      default_vhost => false,
-      servername    => 'default',
-      port          => $http_port,
-      docroot       => '/var/www/html',
-    }
-
-    file { '/etc/apache2/conf.d/bareos-webui.conf':
-      source  => 'puppet:///modules/gernox_bareos/bareos-webui/bareos-webui.conf',
-      require => Class['apache'],
-      notify  => Service['apache2'],
-    }
-  }
+  contain gernox_bareos::director::webui
 }
