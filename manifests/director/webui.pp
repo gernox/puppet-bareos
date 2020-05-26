@@ -12,10 +12,6 @@ class gernox_bareos::director::webui (
     manage_local_dir => false,
   }
 
-  bareos::webui::director { 'test':
-    dir_address => $::fqdn,
-  }
-
   contain ::gernox_docker
   contain ::gernox_bareos::director::webui::images
   contain ::gernox_bareos::director::webui::run

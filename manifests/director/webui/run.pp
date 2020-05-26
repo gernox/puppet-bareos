@@ -9,7 +9,7 @@ class gernox_bareos::director::webui::run (
   String $php_fpm_version = $gernox_bareos::director::webui::php_fpm_version,
 ) {
   $docker_environment = [
-    'BAREOS_DIR_HOST=bareos-dir',
+    "BAREOS_DIR_HOST=${::fqdn}",
     'PHP_FPM_HOST=php-fpm',
     'PHP_FPM_PORT=9000',
   ]
@@ -28,9 +28,6 @@ class gernox_bareos::director::webui::run (
 
   ::docker::run { 'bareos-webui':
     image                 => "barcus/bareos-webui:${version}",
-    volumes               => [
-      '/etc/bareos-webui:/etc/bareos-webui',
-    ],
     net                   => $network_name,
     ports                 => [
       "${http_port}:80",
@@ -45,10 +42,6 @@ class gernox_bareos::director::webui::run (
   ::docker::run { 'bareos-php-fpm':
     image                 => "barcus/php-fpm-alpine:${php_fpm_version}",
     env                   => $docker_environment,
-    volumes               => [
-      'webui_config:/etc/bareos-webui',
-      'webui_data:/usr/share/bareos-webui',
-    ],
     health_check_interval => 30,
     net                   => $network_name,
   }
