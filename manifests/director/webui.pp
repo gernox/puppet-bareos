@@ -4,7 +4,8 @@
 class gernox_bareos::director::webui (
 ) {
   class { 'bareos::webui':
-    manage_package => false,
-    manage_service => false,
+    package_ensure => false,
+    service_ensure => false,
+    service_enable => false,
   }
 }
