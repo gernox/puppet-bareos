@@ -8,8 +8,10 @@ class gernox_bareos::director::webui::run (
   String $version         = $gernox_bareos::director::webui::version,
   String $php_fpm_version = $gernox_bareos::director::webui::php_fpm_version,
 ) {
+  $director_ip = $facts[networking][interfaces][br-bareos][ip]
+
   $docker_environment = [
-    "BAREOS_DIR_HOST=${::fqdn}",
+    "BAREOS_DIR_HOST=${director_ip}",
     'PHP_FPM_HOST=php-fpm',
     'PHP_FPM_PORT=9000',
   ]
