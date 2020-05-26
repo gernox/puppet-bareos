@@ -3,7 +3,6 @@
 #
 class gernox_bareos::director::webui (
   String $version,
-  String $php_fpm_version,
 ) {
   contain ::gernox_docker
   contain ::gernox_bareos::director::webui::images

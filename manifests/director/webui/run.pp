@@ -6,7 +6,6 @@
 class gernox_bareos::director::webui::run (
   Integer $http_port      = 8090,
   String $version         = $gernox_bareos::director::webui::version,
-  String $php_fpm_version = $gernox_bareos::director::webui::php_fpm_version,
 ) {
   $director_ip = $facts[networking][interfaces][br-bareos][ip]
 
@@ -42,7 +41,7 @@ class gernox_bareos::director::webui::run (
   }
 
   ::docker::run { 'bareos-php-fpm':
-    image                 => "barcus/php-fpm-alpine:${php_fpm_version}",
+    image                 => "barcus/php-fpm-alpine",
     env                   => $docker_environment,
     health_check_interval => 30,
     net                   => $network_name,

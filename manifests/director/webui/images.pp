@@ -5,7 +5,6 @@
 #
 class gernox_bareos::director::webui::images (
   String $version         = $gernox_bareos::director::webui::version,
-  String $php_fpm_version = $gernox_bareos::director::webui::php_fpm_version,
 ) {
   ::docker::image { 'bareos-webui':
     ensure    => present,
@@ -16,6 +15,5 @@ class gernox_bareos::director::webui::images (
   ::docker::image { 'bareos-php-fpm':
     ensure    => present,
     image     => 'barcus/php-fpm-alpine',
-    image_tag => $php_fpm_version,
   }
 }

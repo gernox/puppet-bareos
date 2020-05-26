@@ -13,7 +13,6 @@ gernox_bareos::director::webui_user: admin
 gernox_bareos::director::storage_name: "%{facts.fqdn}"
 
 gernox_bareos::director::webui::version: '19'
-gernox_bareos::director::webui::php_fpm_version: latest
 
 gernox_bareos::storage::director_name: "%{facts.fqdn}"
 gernox_bareos::storage::storage_name: "%{facts.fqdn}"
