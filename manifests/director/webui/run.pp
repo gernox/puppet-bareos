@@ -29,8 +29,7 @@ class gernox_bareos::director::webui::run (
   ::docker::run { 'bareos-webui':
     image                 => "barcus/bareos-webui:${version}",
     volumes               => [
-      'webui_config:/etc/bareos-webui',
-      'webui_data:/usr/share/bareos-webui',
+      '/etc/bareos-webui:/etc/bareos-webui',
     ],
     net                   => $network_name,
     ports                 => [

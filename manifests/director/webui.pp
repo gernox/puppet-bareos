@@ -6,9 +6,14 @@ class gernox_bareos::director::webui (
   String $php_fpm_version,
 ) {
   class { 'bareos::webui':
-    package_ensure => false,
-    service_ensure => false,
-    service_enable => false,
+    package_ensure   => false,
+    service_ensure   => false,
+    service_enable   => false,
+    manage_local_dir => false,
+  }
+
+  bareos::webui::director { 'test':
+    dir_address => $::fqdn,
   }
 
   contain ::gernox_docker
