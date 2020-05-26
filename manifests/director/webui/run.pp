@@ -4,7 +4,7 @@
 # @param version
 #
 class gernox_bareos::director::webui::run (
-  Integer $http_port      = 8080,
+  Integer $http_port      = 8090,
   String $version         = $gernox_bareos::director::webui::version,
   String $php_fpm_version = $gernox_bareos::director::webui::php_fpm_version,
 ) {
@@ -34,7 +34,7 @@ class gernox_bareos::director::webui::run (
     ],
     net                   => $network_name,
     ports                 => [
-      "${http_port}:9100",
+      "${http_port}:80",
     ],
     health_check_interval => 30,
     env                   => $docker_environment,

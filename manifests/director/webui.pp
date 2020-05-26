@@ -16,8 +16,8 @@ class gernox_bareos::director::webui (
   contain ::gernox_bareos::director::webui::run
 
   # Order of execution
-  Class['bareos::webui']
-  -> Class['::gernox_docker']
+  Class['::gernox_docker']
+  -> Class['bareos::webui']
   -> Class['::gernox_bareos::director::webui::images']
   ~> Class['::gernox_bareos::director::webui::run']
 }
