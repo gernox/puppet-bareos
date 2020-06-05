@@ -40,6 +40,7 @@ class gernox_bareos::director (
   Integer $http_port,
   Boolean $manage_apache,
   Hash $storages = {},
+  Hash $jobdefs = {},
 ) {
   contain gernox_bareos::install
 
@@ -74,10 +75,10 @@ class gernox_bareos::director (
   }
 
   create_resources('::bareos::director::storage', $storages)
+  create_resources('::bareos::director::jobdefs', $jobdefs)
 
   contain gernox_bareos::director::client
   contain gernox_bareos::director::fileset
-  contain gernox_bareos::director::jobdefs
   contain gernox_bareos::director::messages
   contain gernox_bareos::director::pool
   contain gernox_bareos::director::profile
