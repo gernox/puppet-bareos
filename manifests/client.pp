@@ -15,6 +15,7 @@ class gernox_bareos::client (
   String $director_hostname,
   String $director_address,
   String $client_hostname = $::fqdn,
+  String $client_address  = $::fqdn,
   String $client_password = fqdn_rand_string(20, '', 'bareos-client-password'),
   Hash $jobs              = {},
 ) {
