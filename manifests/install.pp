@@ -2,8 +2,6 @@
 #   Installs bareos
 #
 class gernox_bareos::install {
-  # contain gernox_bareos::repository
-
   class { '::bareos':
     manage_repo    => true,
     manage_user    => true,

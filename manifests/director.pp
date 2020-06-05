@@ -32,8 +32,6 @@ class gernox_bareos::director (
   String $webui_password,
   String $director_name,
   String $director_password,
-  String $storage_name,
-  String $storage_password,
   String $db_user,
   String $db_password,
   String $db_name,
@@ -41,6 +39,7 @@ class gernox_bareos::director (
   Integer $db_port,
   Integer $http_port,
   Boolean $manage_apache,
+  Hash $storages = {},
 ) {
   contain gernox_bareos::install
 
@@ -74,10 +73,7 @@ class gernox_bareos::director (
     auditing      => true,
   }
 
-  class { 'gernox_bareos::director::storage':
-    address  => $storage_name,
-    password => $storage_password,
-  }
+  create_resources('::bareos::director::storage', $storages)
 
   contain gernox_bareos::director::client
   contain gernox_bareos::director::fileset
@@ -86,6 +82,5 @@ class gernox_bareos::director (
   contain gernox_bareos::director::pool
   contain gernox_bareos::director::profile
   contain gernox_bareos::director::schedule
-  contain gernox_bareos::director::storage
   contain gernox_bareos::director::webui
 }
