@@ -25,9 +25,9 @@ class gernox_bareos::client (
     name_client             => $client_hostname,
     tls_enable              => true,
     tls_allowed_cn          => $client_hostname,
-    tls_ca_certificate_file => '/etc/puppetlabs/puppet/ssl/certs/ca.pem',
-    tls_certificate         => "/etc/puppetlabs/puppet/ssl/certs/${client_hostname}.pem",
-    tls_key                 => "/etc/puppetlabs/puppet/ssl/private_keys/${client_hostname}.pem",
+    tls_ca_certificate_file => '/etc/bareos/tls/ca.pem',
+    tls_certificate         => '/etc/bareos/tls/cert.pem',
+    tls_key                 => '/etc/bareos/tls/key.pem',
   }
 
   # allow bareos server to connect
@@ -35,9 +35,9 @@ class gernox_bareos::client (
     address                 => $director_address,
     password                => $client_password,
     tls_enable              => true,
-    tls_ca_certificate_file => '/etc/puppetlabs/puppet/ssl/certs/ca.pem',
-    tls_certificate         => "/etc/puppetlabs/puppet/ssl/certs/${client_hostname}.pem",
-    tls_key                 => "/etc/puppetlabs/puppet/ssl/private_keys/${client_hostname}.pem",
+    tls_ca_certificate_file => '/etc/bareos/tls/ca.pem',
+    tls_certificate         => '/etc/bareos/tls/cert.pem',
+    tls_key                 => '/etc/bareos/tls/key.pem',
     tls_verify_peer         => true,
     tls_allowed_cn          => $director_hostname,
   }

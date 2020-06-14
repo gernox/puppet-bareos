@@ -73,9 +73,9 @@ class gernox_bareos::director (
     password                => $director_password,
     auditing                => true,
     tls_enable              => true,
-    tls_ca_certificate_file => '/etc/puppetlabs/puppet/ssl/certs/ca.pem',
-    tls_certificate         => "/etc/puppetlabs/puppet/ssl/certs/${director_name}.pem",
-    tls_key                 => "/etc/puppetlabs/puppet/ssl/private_keys/${director_name}.pem",
+    tls_ca_certificate_file => '/etc/bareos/tls/ca.pem',
+    tls_certificate         => '/etc/bareos/tls/cert.pem',
+    tls_key                 => '/etc/bareos/tls/key.pem',
     tls_verify_peer         => true,
     tls_allowed_cn          => $director_name,
   }

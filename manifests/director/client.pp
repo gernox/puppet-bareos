@@ -46,9 +46,9 @@ class gernox_bareos::director::client (
       password                => $client_params['client_password'],
       address                 => $client_address,
       tls_enable              => true,
-      tls_ca_certificate_file => '/etc/puppetlabs/puppet/ssl/certs/ca.pem',
-      tls_certificate         => "/etc/puppetlabs/puppet/ssl/certs/${client_hostname}.pem",
-      tls_key                 => "/etc/puppetlabs/puppet/ssl/private_keys/${client_hostname}.pem",
+      tls_ca_certificate_file => '/etc/bareos/tls/ca.pem',
+      tls_certificate         => '/etc/bareos/tls/cert.pem',
+      tls_key                 => '/etc/bareos/tls/key.pem',
       tls_allowed_cn          => $client_hostname,
     }
 
