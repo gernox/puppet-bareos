@@ -25,6 +25,7 @@ class gernox_bareos::storage (
     tls_ca_certificate_file => '/etc/bareos/tls/ca.pem',
     tls_certificate         => '/etc/bareos/tls/cert.pem',
     tls_key                 => '/etc/bareos/tls/key.pem',
+    tls_dh_file             => '/etc/bareos/tls/dh.pem',
     tls_verify_peer         => false,
   }
 
@@ -35,6 +36,7 @@ class gernox_bareos::storage (
     tls_ca_certificate_file => '/etc/bareos/tls/ca.pem',
     tls_certificate         => '/etc/bareos/tls/cert.pem',
     tls_key                 => '/etc/bareos/tls/key.pem',
+    tls_dh_file             => '/etc/bareos/tls/dh.pem',
     tls_verify_peer         => true,
     tls_allowed_cn          => $director_name,
   }

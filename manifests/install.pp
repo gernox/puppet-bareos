@@ -2,7 +2,8 @@
 #   Installs bareos
 #
 class gernox_bareos::install (
-  $fqdn = $::fqdn,
+  String $dh,
+  String $fqdn = $::fqdn,
 ) {
   class { '::bareos':
     manage_repo    => true,
@@ -25,6 +26,13 @@ class gernox_bareos::install (
     group  => 'bareos',
     mode   => '0644',
     source => '/etc/puppetlabs/puppet/ssl/certs/ca.pem',
+  }
+  -> file { '/etc/bareos/tls/dh.pem':
+    ensure  => present,
+    owner   => 'bareos',
+    group   => 'bareos',
+    mode    => '0644',
+    content => $dh,
   }
   -> file { '/etc/bareos/tls/cert.pem':
     ensure => present,
