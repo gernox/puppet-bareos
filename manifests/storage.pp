@@ -18,12 +18,23 @@ class gernox_bareos::storage (
   contain gernox_bareos::install
 
   class { '::bareos::storage::storage':
-    name_storage => $storage_name,
-    messages     => 'Standard',
+    name_storage            => $storage_name,
+    messages                => 'Standard',
+    tls_enable              => true,
+    tls_ca_certificate_file => '/etc/puppetlabs/puppet/ssl/certs/ca.pem',
+    tls_certificate         => "/etc/puppetlabs/puppet/ssl/certs/${client_hostname}.pem",
+    tls_key                 => "/etc/puppetlabs/puppet/ssl/private_keys/${client_hostname}.pem",
+    tls_verify_peer         => false,
   }
 
   ::bareos::storage::director { $director_name:
-    password => $storage_password,
+    password                => $storage_password,
+    tls_enable              => true,
+    tls_ca_certificate_file => '/etc/puppetlabs/puppet/ssl/certs/ca.pem',
+    tls_certificate         => "/etc/puppetlabs/puppet/ssl/certs/${storage_name}.pem",
+    tls_key                 => "/etc/puppetlabs/puppet/ssl/private_keys/${storage_name}.pem",
+    tls_verify_peer         => true,
+    tls_allowed_cn          => $director_name,
   }
 
   # Note: in the current implementation, the Director Name is ignored, and the message is sent to the Director that started the Job.
@@ -32,7 +43,7 @@ class gernox_bareos::storage (
     director    => "${director_name} = all",
   }
 
-  each ($devices) |$device| {
+  each($devices) |$device| {
     ::bareos::storage::device { $device['name']:
       archive_device  => $device['path'],
       media_type      => 'File',
