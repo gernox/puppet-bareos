@@ -22,8 +22,8 @@ class gernox_bareos::storage (
     messages                => 'Standard',
     tls_enable              => true,
     tls_ca_certificate_file => '/etc/puppetlabs/puppet/ssl/certs/ca.pem',
-    tls_certificate         => "/etc/puppetlabs/puppet/ssl/certs/${client_hostname}.pem",
-    tls_key                 => "/etc/puppetlabs/puppet/ssl/private_keys/${client_hostname}.pem",
+    tls_certificate         => "/etc/puppetlabs/puppet/ssl/certs/${storage_name}.pem",
+    tls_key                 => "/etc/puppetlabs/puppet/ssl/private_keys/${storage_name}.pem",
     tls_verify_peer         => false,
   }
 
