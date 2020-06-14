@@ -24,6 +24,7 @@ class gernox_bareos::client (
   class { '::bareos::client::client':
     name_client             => $client_hostname,
     tls_enable              => true,
+    tls_require             => true,
     tls_allowed_cn          => $client_hostname,
     tls_ca_certificate_file => '/etc/bareos/tls/ca.pem',
     tls_certificate         => '/etc/bareos/tls/cert.pem',
@@ -35,6 +36,7 @@ class gernox_bareos::client (
     address                 => $director_address,
     password                => $client_password,
     tls_enable              => true,
+    tls_require             => true,
     tls_ca_certificate_file => '/etc/bareos/tls/ca.pem',
     tls_certificate         => '/etc/bareos/tls/cert.pem',
     tls_key                 => '/etc/bareos/tls/key.pem',

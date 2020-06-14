@@ -11,20 +11,6 @@ class gernox_bareos::director::client (
   # setup filedaemon
   contain gernox_bareos::client
 
-  # configure client on bareos director
-  # ::bareos::director::client { $::fqdn:
-  #   description => 'Client resource of the Director itself.',
-  #   password    => $password,
-  #   address     => 'localhost',
-  #   # tls_enable  => false,
-  # }
-
-  # ::bareos::director::job { 'backup-bareos-fd':
-  #   job_defs => 'BackupBareosCatalog',
-  #   client   => 'bareos-director-fd',
-  #   messages => 'Standard',
-  # }
-
   ::bareos::director::job { 'RestoreFiles':
     job_defs => 'RestoreFiles',
     client   => $director_name,
@@ -46,6 +32,7 @@ class gernox_bareos::director::client (
       password                => $client_params['client_password'],
       address                 => $client_address,
       tls_enable              => true,
+      tls_require             => true,
       tls_ca_certificate_file => '/etc/bareos/tls/ca.pem',
       tls_certificate         => '/etc/bareos/tls/cert.pem',
       tls_key                 => '/etc/bareos/tls/key.pem',

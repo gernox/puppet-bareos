@@ -73,6 +73,7 @@ class gernox_bareos::director (
     password                => $director_password,
     auditing                => true,
     tls_enable              => true,
+    tls_require             => true,
     tls_ca_certificate_file => '/etc/bareos/tls/ca.pem',
     tls_certificate         => '/etc/bareos/tls/cert.pem',
     tls_key                 => '/etc/bareos/tls/key.pem',

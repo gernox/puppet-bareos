@@ -21,6 +21,7 @@ class gernox_bareos::storage (
     name_storage            => $storage_name,
     messages                => 'Standard',
     tls_enable              => true,
+    tls_require             => true,
     tls_ca_certificate_file => '/etc/bareos/tls/ca.pem',
     tls_certificate         => '/etc/bareos/tls/cert.pem',
     tls_key                 => '/etc/bareos/tls/key.pem',
@@ -30,6 +31,7 @@ class gernox_bareos::storage (
   ::bareos::storage::director { $director_name:
     password                => $storage_password,
     tls_enable              => true,
+    tls_require             => true,
     tls_ca_certificate_file => '/etc/bareos/tls/ca.pem',
     tls_certificate         => '/etc/bareos/tls/cert.pem',
     tls_key                 => '/etc/bareos/tls/key.pem',
