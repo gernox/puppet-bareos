@@ -22,8 +22,29 @@ class gernox_bareos::client (
   contain gernox_bareos::install
 
   class { '::bareos::client::client':
-    name_client => $client_hostname,
-    # tls_enable  => false,
+    name_client             => $client_hostname,
+    tls_enable              => true,
+    tls_allowed_cn          => $client_hostname,
+    tls_ca_certificate_file => '/etc/puppetlabs/puppet/ssl/certs/ca.pem',
+    tls_certificate         => "/etc/puppetlabs/puppet/ssl/certs/${client_hostname}.pem",
+    tls_key                 => "/etc/puppetlabs/puppet/ssl/private_keys/${client_hostname}.pem",
+  }
+
+  # allow bareos server to connect
+  ::bareos::client::director { $director_hostname:
+    address                 => $director_address,
+    password                => $client_password,
+    tls_enable              => true,
+    tls_ca_certificate_file => '/etc/puppetlabs/puppet/ssl/certs/ca.pem',
+    tls_certificate         => "/etc/puppetlabs/puppet/ssl/certs/${client_hostname}.pem",
+    tls_key                 => "/etc/puppetlabs/puppet/ssl/private_keys/${client_hostname}.pem",
+    tls_verify_peer         => true,
+    tls_allowed_cn          => $director_hostname,
+  }
+
+  ::bareos::client::messages { 'Standard':
+    description => 'Send relevant messages to the Director.',
+    director    => "${director_hostname} = all, !skipped, !restored",
   }
 
   file { [
@@ -34,17 +55,5 @@ class gernox_bareos::client (
     ensure  => present,
     content => '',
     require => Package['bareos-filedaemon'],
-  }
-
-  # allow bareos server to connect
-  ::bareos::client::director { $director_hostname:
-    address  => $director_address,
-    password => $client_password,
-    # tls_enable => false,
-  }
-
-  ::bareos::client::messages { 'Standard':
-    description => 'Send relevant messages to the Director.',
-    director    => "${director_hostname} = all, !skipped, !restored",
   }
 }

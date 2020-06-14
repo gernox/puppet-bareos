@@ -40,7 +40,7 @@ class gernox_bareos::director (
   Integer $http_port,
   Boolean $manage_apache,
   Hash $storages = {},
-  Hash $jobdefs = {},
+  Hash $jobdefs  = {},
 ) {
   contain gernox_bareos::install
 
@@ -68,10 +68,16 @@ class gernox_bareos::director (
   }
 
   class { '::bareos::director::director':
-    name_director => $director_name,
-    messages      => 'Daemon',
-    password      => $director_password,
-    auditing      => true,
+    name_director           => $director_name,
+    messages                => 'Daemon',
+    password                => $director_password,
+    auditing                => true,
+    tls_enable              => true,
+    tls_ca_certificate_file => '/etc/puppetlabs/puppet/ssl/certs/ca.pem',
+    tls_certificate         => "/etc/puppetlabs/puppet/ssl/certs/${director_name}.pem",
+    tls_key                 => "/etc/puppetlabs/puppet/ssl/private_keys/${director_name}.pem",
+    tls_verify_peer         => true,
+    tls_allowed_cn          => $director_name,
   }
 
   create_resources('::bareos::director::storage', $storages)

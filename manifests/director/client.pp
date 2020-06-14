@@ -42,10 +42,14 @@ class gernox_bareos::director::client (
     $client_address = $client_params['client_address']
 
     ::bareos::director::client { $client_hostname:
-      description => "Client resource of ${client_hostname}",
-      password    => $client_params['client_password'],
-      address     => $client_address,
-      # tls_enable  => false,
+      description             => "Client resource of ${client_hostname}",
+      password                => $client_params['client_password'],
+      address                 => $client_address,
+      tls_enable              => true,
+      tls_ca_certificate_file => '/etc/puppetlabs/puppet/ssl/certs/ca.pem',
+      tls_certificate         => "/etc/puppetlabs/puppet/ssl/certs/${client_hostname}.pem",
+      tls_key                 => "/etc/puppetlabs/puppet/ssl/private_keys/${client_hostname}.pem",
+      tls_allowed_cn          => $client_hostname,
     }
 
     $jobs = $client_params['jobs']
