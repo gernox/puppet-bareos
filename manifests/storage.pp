@@ -47,15 +47,14 @@ class gernox_bareos::storage (
     director    => "${director_name} = all",
   }
 
-  each($devices) |$device| {
-    ::bareos::storage::device { $device['name']:
-      archive_device  => $device['path'],
-      media_type      => 'File',
-      label_media     => true,
-      random_access   => true,
-      automatic_mount => true,
-      removable_media => false,
-      always_open     => false,
-    }
+  $device_defaults = {
+    media_type      => 'File',
+    label_media     => true,
+    random_access   => true,
+    automatic_mount => true,
+    removable_media => false,
+    always_open     => false,
   }
+
+  create_resources('::bareos::storage::device', $devices, $device_defaults)
 }
