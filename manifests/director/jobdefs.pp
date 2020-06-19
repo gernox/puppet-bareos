@@ -13,6 +13,7 @@ class gernox_bareos::director::jobdefs {
     full_backup_pool         => 'Full',
     differential_backup_pool => 'Differential',
     incremental_backup_pool  => 'Incremental',
+    storage                  => 'File',
   }
 
   ::bareos::director::jobdefs { 'BackupBareosCatalog':
