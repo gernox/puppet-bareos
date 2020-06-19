@@ -15,8 +15,3 @@ gernox_bareos::director::webui::version: '19'
 
 gernox_bareos::storage::director_name: "%{facts.fqdn}"
 gernox_bareos::storage::storage_name: "%{facts.fqdn}"
-
-gernox_bareos::client::jobs:
-  default:
-    job_defs: DefaultJob
-    schedule_res: WeeklyCycle

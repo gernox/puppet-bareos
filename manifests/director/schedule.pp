@@ -2,6 +2,25 @@
 #   Manages the bareos schedule configuration
 #
 class gernox_bareos::director::schedule {
+  # AI Cycles
+  ::bareos::director::schedule { 'AlwaysIncrementalSched':
+    run => [
+      'Incremental sun-sat at 20:00',
+    ]
+  }
+
+  ::bareos::director::schedule { 'ConsolidateSched':
+    run => [
+      'Incremental 3/4 at 21:00',
+    ]
+  }
+
+  ::bareos::director::schedule { 'LongTermSched':
+    run => [
+      'on 1 at 12:00',
+    ]
+  }
+
   # Default Cycles
   ::bareos::director::schedule { 'WeeklyCycle':
     description => 'Default Backup shedule.',
