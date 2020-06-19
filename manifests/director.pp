@@ -99,7 +99,7 @@ class gernox_bareos::director (
 
   create_resources('::bareos::director::storage', $storages, $storage_defaults)
   create_resources('::bareos::director::jobdefs', $jobdefs)
-  create_resources('::bareos::director::pools', $pools)
+  create_resources('::bareos::director::pool', $pools)
 
   contain gernox_bareos::director::client
   contain gernox_bareos::director::fileset
