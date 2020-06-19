@@ -13,7 +13,7 @@ class gernox_bareos::storage (
   String $director_name,
   String $storage_name,
   String $storage_password,
-  Array  $devices = [],
+  Hash  $devices = {},
 ) {
   contain gernox_bareos::install
 
