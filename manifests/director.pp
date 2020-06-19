@@ -103,6 +103,7 @@ class gernox_bareos::director (
 
   contain gernox_bareos::director::client
   contain gernox_bareos::director::fileset
+  contain gernox_bareos::director::jobdefs
   contain gernox_bareos::director::messages
   contain gernox_bareos::director::profile
   contain gernox_bareos::director::schedule

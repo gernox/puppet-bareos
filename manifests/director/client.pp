@@ -14,6 +14,13 @@ class gernox_bareos::director::client (
   ::bareos::director::job { 'RestoreFiles':
     job_defs => 'RestoreFiles',
     client   => $director_name,
+    messages => 'Standard',
+  }
+
+  ::bareos::director::job { 'BackupBareosCatalog':
+    job_defs => 'BackupBareosCatalog',
+    client   => $director_name,
+    messages => 'Standard',
   }
 
   # Ignore puppetdb during bootstrap
