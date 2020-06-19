@@ -41,6 +41,7 @@ class gernox_bareos::director (
   Boolean $manage_apache,
   Hash $storages = {},
   Hash $jobdefs  = {},
+  Hash $pools    = {},
 ) {
   contain gernox_bareos::install
 
@@ -87,13 +88,22 @@ class gernox_bareos::director (
     tls_allowed_cn          => $director_name,
   }
 
-  create_resources('::bareos::director::storage', $storages)
+  $storage_defaults = {
+    tls_enable              => true,
+    tls_require             => true,
+    tls_ca_certificate_file => '/etc/bareos/tls/ca.pem',
+    tls_certificate         => '/etc/bareos/tls/cert.pem',
+    tls_key                 => '/etc/bareos/tls/key.pem',
+    tls_dh_file             => '/etc/bareos/tls/dh.pem',
+  }
+
+  create_resources('::bareos::director::storage', $storages, $storage_defaults)
   create_resources('::bareos::director::jobdefs', $jobdefs)
+  create_resources('::bareos::director::pools', $pools)
 
   contain gernox_bareos::director::client
   contain gernox_bareos::director::fileset
   contain gernox_bareos::director::messages
-  contain gernox_bareos::director::pool
   contain gernox_bareos::director::profile
   contain gernox_bareos::director::schedule
   contain gernox_bareos::director::webui
