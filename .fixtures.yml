@@ -10,8 +10,8 @@ fixtures:
       repo: 'https://github.com/puppetlabs/puppetlabs-apt.git'
       ref: 'v7.4.1'
     bareos:
-      repo: 'https://github.com/Project0/puppet-bareos.git'
-      ref: '973928680d7ab720c873fcdc1d4c950299fdff91'
+      repo: 'https://github.com/voxpupuli/puppet-bareos.git'
+      ref: 'b67e849be7219544c152567ea2aa300515ea3465'
     concat:
       repo: 'https://github.com/puppetlabs/puppetlabs-concat.git'
       ref: 'v6.2.0'
